@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频背景循环播放</title>
+<style>
+  /* 设置视频作为背景 */
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  /* 视频样式 */
+  video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* 确保视频在内容之下 */
+    transform: translate(-50%, -50%); /* 使视频居中 */
+    object-fit: cover; /* 视频覆盖整个屏幕，保持宽高比 */
+  }
+  /* 设置文本样式 */
+  #sentence {
+    position: absolute;
+    color: black; /* 白色字体 */
+    font-size: 36px; /* 调整字体大小 */
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 0;
+  }
+</style>
+</head>
+<body>
+
+<video autoplay loop muted playsinline>
+  <source src="电脑.mp4" type="video/mp4">
+</video>
+
+<div id="sentence"></div>
+
+<script>
+// 要显示的句子，每个元素是一个字符串
+const sentences = [
+  "人生不过三万天",
+  "烂事就早点翻篇吧",
+  "希望你在这个世界上",
+  "可以勇敢的做自己",
+  "祝你生活愉快幸福",
+  "万事顺遂",
+  "我想说我们来到这个世界",
+  "不是为了繁衍后代",
+  "而是来看花怎么开",
+  "水怎么流",
+  "太阳怎么升起",
+  "夕阳怎么落下",
+  "我们活在这个世界上",
+  "无非是要明白一些道理",
+  "遇见些有趣的事",
+  "生命它是一场偶然",
+  "我们只是在其中寻找因果",
+  "所以人啊",
+  "花大把时间迷茫",
+  "在几个瞬间成长",
+	"iTz韩晨睿",
+];
+
+// 当前句子的索引
+let index = 0;
+
+// 显示下一句的函数
+function showNextSentence() {
+  if (index < sentences.length) {
+    const sentenceDiv = document.getElementById('sentence');
+    // 清空当前div内容
+    sentenceDiv.textContent = '';
+    // 将当前句子添加到div中
+    sentenceDiv.textContent = sentences[index];
+    // 准备显示下一句
+    index++;
+    // 等待半秒钟后显示下一句
+    setTimeout(showNextSentence, 1300);
+  } else {
+
+  }
+}
+
+// 页面加载完成后开始显示第一句
+window.onload = showNextSentence;
+</script>
+
+</body>
+</html>
